@@ -1,0 +1,77 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: trailing-whitespace
+        name: (pre-commit-hooks) Trim Trailing Whitespaces
+    -   id: end-of-file-fixer
+        name: (pre-commit-hooks) Fix End of Files
+    -   id: mixed-line-ending
+        args: ['--fix=lf']
+        name: (pre-commit-hooks) Replace line ending by the UNIX 'lf' character
+    -   id: check-yaml
+        name: (pre-commit-hooks) Check Yaml Files
+    -   id: detect-private-key
+        name: (pre-commit-hooks) Private Key Check
+    -   id: check-merge-conflict
+        name: (pre-commit-hooks) Check for merge conflicts
+    -   id: debug-statements
+        name: (pre-commit-hooks) Python debug statements
+    -   id: check-added-large-files
+        name: (pre-commit-hooks) Check for added large files
+    -   id: no-commit-to-branch
+        name: (pre-commit-hooks) Branch pattern
+        args: ['--pattern', 'regular expression to validate branch format']
+
+-   repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+    -   id: black
+        name: (Black) Python Code Format
+
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+    -   id: flake8
+        name: (Flake8) Python Code Checker
+        additional_dependencies:
+            - flake8
+            - pep8-naming
+            - hacking
+            - flake8-black>=0.1.1
+            - flake8-docstrings
+        args:
+            - "--max-line-length=120"
+            - "--statistics"
+            - "--ignore=W503,W504,BLK100,E203,D400,D401,D403,D107,D101,D104,D100,D202,D412" # conflict codes between black and flake
+        exclude: ^tests # ignore test folder
+
+-   repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.92.0
+    hooks:
+    -   id: terraform_validate
+        name: (Terraform) Validate Config Files
+        args:
+            - --hook-config=--parallelism-ci-cpu-cores=6
+
+    -   id: terraform_fmt
+        name: (Terraform) Format
+        args:
+            - --hook-config=--parallelism-ci-cpu-cores=6
+
+    -   id: terraform_docs
+        name: (Terraform) Docs
+        args:
+            - --hook-config=--path-to-file=README.md
+            - --hook-config=--add-to-existing-file=true
+            - --hook-config=--create-file-if-not-exist=true
+            - --hook-config=--parallelism-ci-cpu-cores=6
+
+-   repo: local
+    hooks:
+    -   id: validate-commit-format
+        name: Validate commit message format
+        language: pygrep
+        entry: '' # Enter regular expression here
+        args: [--multiline]
+        stages: [commit-msg]

@@ -1,2 +1,2 @@
-# useful-shell-scripts
-Some useful shell scripts
+# useful-scripts
+Some useful scripts

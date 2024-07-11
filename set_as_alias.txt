@@ -1,0 +1,8 @@
+inside .bashrc set like below
+
+alias cd_to_desktop='source /home/mareedu/my_scripts/cd_to_desktop.sh'
+alias git_ssh_connection_check='source /home/mareedu/my_scripts/ssh_connection_check_git.sh'
+alias git_ssh_setup='source /home/mareedu/my_scripts/ssh_setup_git.sh'
+alias aws_profile='source /home/mareedu/my_scripts/aws_profile.sh'
+alias pep8_check='source /home/mareedu/my_scripts/pep8_check.sh'
+alias my_git_ssh='source /home/mareedu/my_scripts/my_git_ssh.sh'
